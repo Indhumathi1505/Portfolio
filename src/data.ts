@@ -226,7 +226,7 @@ export const certificationsData: Certification[] = [
     title: "Cloud Computing",
     issuer: "NPTEL (National Programme on Technology Enhanced Learning)",
     date: "2025",
-    credentialUrl: "/Cloud Computing.pdf",
+    credentialUrl: `${import.meta.env.BASE_URL}Cloud Computing.pdf`,
     description: "In-depth program covering virtualization, cloud service delivery models (SaaS, PaaS, IaaS), MapReduce distributed frameworks, resource scheduling, and cloud security architecture."
   },
   {
@@ -234,7 +234,7 @@ export const certificationsData: Certification[] = [
     title: "Crash Course on Python",
     issuer: "Coursera",
     date: "2024",
-    credentialUrl: "/Coursera Python.pdf",
+    credentialUrl: `${import.meta.env.BASE_URL}Coursera Python.pdf`,
     description: "Hands-on foundation course covering basic Python syntax, data structures (lists, dictionaries, tuples), object-oriented programming concepts, and writing automated scripts."
   },
   {
@@ -242,7 +242,7 @@ export const certificationsData: Certification[] = [
     title: "Programming Fundamentals in C",
     issuer: "Coursera",
     date: "2023",
-    credentialUrl: "/Coursera C fundamentals.pdf",
+    credentialUrl: `${import.meta.env.BASE_URL}Coursera C fundamentals.pdf`,
     description: "Foundational programming certification focused on memory allocation, pointer manipulation, arrays, modular program structure, and compilation processes in C."
   },
   {
@@ -250,7 +250,7 @@ export const certificationsData: Certification[] = [
     title: "Java Programming Fundamentals",
     issuer: "Infosys Springboard",
     date: "2024",
-    credentialUrl: "/infosys java cert.pdf",
+    credentialUrl: `${import.meta.env.BASE_URL}infosys java cert.pdf`,
     description: "Rigorous training in Core Java, object-oriented concepts, multithreading, exception handling, dynamic collection frameworks, and memory management basics."
   },
   {
@@ -272,7 +272,7 @@ export const certificationsData: Certification[] = [
     title: "AI Fundamentals: Foundations for Understanding AI",
     issuer: "IBM SkillsBuild",
     date: "2025",
-    credentialUrl: "/AI -Completion Certificate _ SkillsBuild.pdf",
+    credentialUrl: `${import.meta.env.BASE_URL}AI -Completion Certificate _ SkillsBuild.pdf`,
     description: "Comprehensive foundational introduction covering artificial intelligence concepts, machine learning algorithms, deep learning structures, natural language processing, and ethical AI practices."
   },
   {

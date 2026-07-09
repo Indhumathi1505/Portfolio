@@ -142,7 +142,7 @@ export default function Hero() {
           <MagneticButton
             id="hero-resume-btn"
             as="a"
-            href="/Indhumathi R S.pdf"
+            href={`${import.meta.env.BASE_URL}Indhumathi R S.pdf`}
             download="Indhumathi R S.pdf"
             className="w-full sm:w-auto px-8 py-3.5 rounded-xl font-semibold bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/10 text-white shadow-lg transition-all duration-300 flex items-center justify-center gap-2"
           >

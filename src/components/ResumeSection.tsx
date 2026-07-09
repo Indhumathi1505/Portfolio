@@ -15,7 +15,7 @@ export default function ResumeSection() {
 
   const triggerResumeDownload = () => {
     const a = document.createElement("a");
-    a.href = "/Indhumathi R S.pdf";
+    a.href = `${import.meta.env.BASE_URL}Indhumathi R S.pdf`;
     a.download = "Indhumathi R S.pdf";
     document.body.appendChild(a);
     a.click();
