@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Download, FileText, CheckCircle, Sparkles, Star, Award, ShieldAlert, Cpu } from "lucide-react";
+import { Download, FileText, CheckCircle, Sparkles, Star, Award, ShieldAlert, Cpu, Loader2 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 
 export default function ResumeSection() {
@@ -13,16 +13,30 @@ export default function ResumeSection() {
     "Responsive layout specialist (Mobile-first setups)"
   ];
 
-  const triggerResumeDownload = () => {
-    const a = document.createElement("a");
-    a.href = `${import.meta.env.BASE_URL}Indhumathi R S.pdf`;
-    a.download = "Indhumathi R S.pdf";
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
+  const [isDownloading, setIsDownloading] = useState(false);
 
-    setDownloadSuccess(true);
-    setTimeout(() => setDownloadSuccess(false), 3000);
+  const triggerResumeDownload = async () => {
+    if (isDownloading) return;
+    setIsDownloading(true);
+    setDownloadSuccess(false);
+    try {
+      const response = await fetch(`${import.meta.env.BASE_URL}Indhumathi R S.pdf`);
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "Indhumathi R S.pdf";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+      setDownloadSuccess(true);
+      setTimeout(() => setDownloadSuccess(false), 3000);
+    } catch (error) {
+      console.error("Download failed:", error);
+    } finally {
+      setIsDownloading(false);
+    }
   };
 
   const atsScore = 88;
@@ -148,10 +162,11 @@ export default function ResumeSection() {
             <button
               id="resume-download-trigger"
               onClick={triggerResumeDownload}
-              className="w-full px-8 py-4.5 rounded-2xl font-bold bg-gradient-to-r from-indigo-650 to-violet-650 hover:from-indigo-600 hover:to-violet-600 text-white shadow-xl shadow-indigo-600/20 flex items-center justify-center gap-3 cursor-pointer transition-all duration-300"
+              disabled={isDownloading}
+              className={`w-full px-8 py-4.5 rounded-2xl font-bold bg-gradient-to-r from-indigo-650 to-violet-650 hover:from-indigo-600 hover:to-violet-600 text-white shadow-xl shadow-indigo-600/20 flex items-center justify-center gap-3 transition-all duration-300 ${isDownloading ? 'opacity-80 cursor-wait' : 'cursor-pointer'}`}
             >
-              <Download className="w-5 h-5 animate-pulse" />
-              Download Resume PDF
+              {isDownloading ? <Loader2 className="w-5 h-5 animate-spin" /> : <Download className="w-5 h-5 animate-pulse" />}
+              {isDownloading ? "Downloading PDF..." : "Download Resume PDF"}
             </button>
 
             <AnimatePresence>

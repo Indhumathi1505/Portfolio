@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { Github, Linkedin, Mail, Code, ArrowDown, ChevronRight, Download } from "lucide-react";
+import { Github, Linkedin, Mail, Code, ArrowDown, ChevronRight, Download, Loader2 } from "lucide-react";
 import { motion, useScroll, useTransform } from "motion/react";
 import { ownerDetails } from "../data";
 import MagneticButton from "./MagneticButton";
@@ -8,6 +8,28 @@ export default function Hero() {
   const [typedText, setTypedText] = useState("");
   const [roleIndex, setRoleIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [isDownloadingResume, setIsDownloadingResume] = useState(false);
+
+  const handleResumeDownload = async () => {
+    if (isDownloadingResume) return;
+    setIsDownloadingResume(true);
+    try {
+      const response = await fetch(`${import.meta.env.BASE_URL}Indhumathi R S.pdf`);
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "Indhumathi R S.pdf";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error("Download failed:", error);
+    } finally {
+      setIsDownloadingResume(false);
+    }
+  };
 
   const roles = ownerDetails.roles;
   const TYPING_SPEED = 100;
@@ -141,13 +163,11 @@ export default function Hero() {
 
           <MagneticButton
             id="hero-resume-btn"
-            as="a"
-            href={`${import.meta.env.BASE_URL}Indhumathi R S.pdf`}
-            download="Indhumathi R S.pdf"
+            onClick={handleResumeDownload}
             className="w-full sm:w-auto px-8 py-3.5 rounded-xl font-semibold bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/10 text-white shadow-lg transition-all duration-300 flex items-center justify-center gap-2"
           >
-            Download Resume
-            <Download className="w-4 h-4" />
+            {isDownloadingResume ? "Downloading..." : "Download Resume"}
+            {isDownloadingResume ? <Loader2 className="w-4 h-4 animate-spin" /> : <Download className="w-4 h-4" />}
           </MagneticButton>
 
           <MagneticButton

@@ -3,7 +3,7 @@ import { Project, Skill, Certification, Education, Experience, Achievement } fro
 export const ownerDetails = {
   name: "Indhumathi R S",
   titleMsg: "Hi, I'm",
-  roles: ["Software Engineer", "Java Full Stack Developer", "AI Enthusiast", "Machine Learning Engineer", "Problem Solver", "Backend Developer"],
+  roles: ["Software Engineer", "Java Full Stack Developer", "AI Enthusiast", "Problem Solver", "Backend Developer"],
   tagline: "Computer Science Engineering Student | Java Full Stack Developer | Problem Solver",
   shortIntro: "Computer Science Engineering student with strong foundations in programming and software development. Passionate about building real-world applications and continuously learning modern technologies.",
   stats: {
