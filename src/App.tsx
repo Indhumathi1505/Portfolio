@@ -47,7 +47,6 @@ export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
-  const [currentTime, setCurrentTime] = useState("");
   const [isPaletteOpen, setIsPaletteOpen] = useState(false);
   const [paletteQuery, setPaletteQuery] = useState("");
 
@@ -57,15 +56,8 @@ export default function App() {
       setLoading(false);
     }, 1800);
 
-    // Sync system clock for placement footer detailing
-    const interval = setInterval(() => {
-      const utcTime = new Date().toISOString().replace("T", " ").substring(0, 19) + " UTC";
-      setCurrentTime(utcTime);
-    }, 1000);
-
     return () => {
       clearTimeout(timer);
-      clearInterval(interval);
     };
   }, []);
 
@@ -397,8 +389,6 @@ export default function App() {
             </p>
             <p className="text-[11px] font-mono leading-none flex items-center gap-1.5 mt-0.5">
               <span>ACTIVE PLACEMENT HUNTER</span>
-              <span>&bull;</span>
-              <span>{currentTime || "UTC SESSION RUNNING"}</span>
             </p>
           </div>
 

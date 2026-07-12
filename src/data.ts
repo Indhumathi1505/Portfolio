@@ -298,7 +298,7 @@ export const aboutFeaturesData = [
   },
   {
     title: "Leadership",
-    description: "Organized campus tech sessions, coordinated peer study groups, and managed project milestone releases.",
+    description: "Led technical project teams, coordinated development workflows, and successfully managed end-to-end project milestone releases.",
     icon: "Shield"
   },
   {
